@@ -28,6 +28,6 @@ if __name__ == '__main__':
     mark_done_parser.add_argument('task_id', type=int)
 
     list_parser = subparsers.add_parser('list', help='List tasks')
-    list_parser.add_argument('filter', choices=['done', 'todo', 'in-progress'])
+    list_parser.add_argument('filter', nargs='?', choices=['done', 'todo', 'in-progress'])
 
     args = parser.parse_args()
