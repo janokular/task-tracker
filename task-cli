@@ -58,10 +58,29 @@ if args.action == 'add':
             'createdAt': time.asctime(),
             'updatedAt': time.asctime()
         }
-        
+
         # Append the task to the loaded data
         tasks_data["tasks"].append(new_task)
         tasks.seek(0)
 
         # Save the task inside the tasks.json
         json.dump(tasks_data, tasks, indent=4)
+
+elif args.action == 'update':
+    print(args.task_id)
+    print(args.task)
+
+elif args.action == 'delete':
+    print(args.task_id)
+
+elif args.action == 'mark-in-progress':
+    print(args.task_id)
+
+elif args.action == 'mark-done':
+    print(args.task_id)
+
+elif args.action == 'list':
+    print(args.filter)
+
+else:
+    parser.print_help()
