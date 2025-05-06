@@ -52,11 +52,11 @@ if args.action == 'add':
 
         # Create new task to be saved
         new_task = {
-        'id': new_task_id,
-        'description': args.task,
-        'status': 'todo',
-        'createdAt': time.asctime(),
-        'updatedAt': time.asctime()
+            'id': new_task_id,
+            'description': args.task,
+            'status': 'todo',
+            'createdAt': time.asctime(),
+            'updatedAt': time.asctime()
         }
         
         # Append the task to the loaded data
