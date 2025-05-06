@@ -1,7 +1,5 @@
 #!/bin/env python3
 
-# Program used to track and manage your tasks
-
 import argparse
 import time
 import json
@@ -30,3 +28,39 @@ list_parser = subparsers.add_parser('list', help='List tasks')
 list_parser.add_argument('filter', nargs='?', choices=['done', 'todo', 'in-progress'])
 
 args = parser.parse_args()
+
+tasks_json = 'tasks.json'
+
+# Check if tasks.json file exists and is not empty
+if not os.path.exists(tasks_json) or os.path.getsize(tasks_json) == 0:
+    with open(tasks_json, 'w') as tasks:
+        json.dump({"tasks": []}, tasks)
+
+# Add new task to tasks.json
+if args.action == 'add':
+    with open(tasks_json, 'r+') as tasks:
+        # Load data from tasks.json
+        tasks_data = json.load(tasks)
+
+        # Check if there are any tasks inside the tasks.json
+        # If not set it to 1 else increment the value for new_task_id
+        if not tasks_data["tasks"]:
+            new_task_id = 1
+        else:
+            new_task_id = tasks_data["tasks"][-1].get("id") + 1
+
+        # Create new task to be saved
+        new_task = {
+        'id': new_task_id,
+        'description': args.task,
+        'status': 'todo',
+        'createdAt': time.asctime(),
+        'updatedAt': time.asctime()
+        }
+        
+        # Append the task to the loaded data
+        tasks_data["tasks"].append(new_task)
+        tasks.seek(0)
+
+        # Save the task inside the tasks.json
+        json.dump(tasks_data, tasks, indent=4)
