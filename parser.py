@@ -1,5 +1,6 @@
 import argparse
 
+
 def parse_arguments():
     '''Parse arguments needed for program logic'''
     parser = argparse.ArgumentParser(description='Program used to track and manage your tasks')
@@ -23,6 +24,6 @@ def parse_arguments():
     mark_done_parser.add_argument('task_id', type=int)
 
     list_parser = subparsers.add_parser('list', help='List tasks')
-    list_parser.add_argument('filter', nargs='?', choices=['done', 'todo', 'in-progress'])
+    list_parser.add_argument('status', nargs='?', choices=['done', 'todo', 'in-progress'])
 
     return parser.parse_args()
