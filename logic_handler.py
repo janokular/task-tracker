@@ -1,7 +1,7 @@
-import add
-import update
-import delete
-import list
+import task.add as add
+import task.update as update
+import task.delete as delete
+import task.list as list
 
 
 def handle(args, file):

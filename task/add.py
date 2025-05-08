@@ -5,7 +5,7 @@ import time
 def add(args, file):
     '''Add new task'''
     id = 1
-    
+
     with open(file, 'r+') as tasks:
         # Load data from tasks.json
         old_tasks = json.load(tasks)

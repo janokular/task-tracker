@@ -1,7 +1,7 @@
 #!/bin/env python3
 
 import parser
-import file_checker
+import services.file_checker as file_checker
 import logic_handler
 
 
