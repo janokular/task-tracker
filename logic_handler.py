@@ -1,6 +1,7 @@
 import task.add as add
 import task.update as update
 import task.delete as delete
+import task.mark as mark
 import task.list as list
 
 
@@ -16,10 +17,10 @@ def handle(args, file):
         delete.delete(args, file)
 
     elif args.action == 'mark-in-progress':
-        update.mark(args, file)
+        mark.mark(args, file)
 
     elif args.action == 'mark-done':
-        update.mark(args, file)
+        mark.mark(args, file)
 
     elif args.action == 'list':
         list.list(args, file)
