@@ -2,7 +2,7 @@ import json
 import time
 
 
-def add(args, file):
+def add(description, file):
     '''Add new task'''
     id = 1
 
@@ -18,7 +18,7 @@ def add(args, file):
         # Append the new task to the old_tasks
         tasks['tasks'].append({
             'id': id,
-            'description': args.task,
+            'description': description,
             'status': 'todo',
             'createdAt': time.asctime(),
             'updatedAt': time.asctime()

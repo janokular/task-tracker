@@ -1,7 +1,7 @@
 import json
 
 
-def list(args, file):
+def list(status, file):
     '''List tasks'''
     with open(file) as tasks_json:
         # Load data form tasks.json
@@ -9,8 +9,8 @@ def list(args, file):
         
         # Loop thorught tasks
         for task in tasks['tasks']:
-            if args.status == None:
+            if status == None:
                 print(task)
-            # Apply filter if user provided args.status
-            elif args.status == task.get('status'):
+            # Filter lisiting based on task status
+            elif status == task.get('status'):
                 print(task)

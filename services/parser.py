@@ -8,11 +8,11 @@ def parse_arguments():
     subparsers = parser.add_subparsers(dest='action')
 
     add_parser = subparsers.add_parser('add', help='Add a new task')
-    add_parser.add_argument('task')
+    add_parser.add_argument('task_description')
 
     update_parser = subparsers.add_parser('update', help='Update a task')
     update_parser.add_argument('task_id', type=int)
-    update_parser.add_argument('task')
+    update_parser.add_argument('task_description')
 
     delete_parser = subparsers.add_parser('delete', help='Delete a task')
     delete_parser.add_argument('task_id', type=int)
@@ -24,6 +24,6 @@ def parse_arguments():
     mark_done_parser.add_argument('task_id', type=int)
 
     list_parser = subparsers.add_parser('list', help='List tasks')
-    list_parser.add_argument('status', nargs='?', choices=['done', 'todo', 'in-progress'])
+    list_parser.add_argument('task_status', nargs='?', choices=['done', 'todo', 'in-progress'])
 
     return parser.parse_args()
