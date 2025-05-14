@@ -1,0 +1,121 @@
+import utils.id_checker as id_checker
+import json
+import time
+
+
+def list(status, file):
+    '''List tasks'''
+    with open(file) as tasks_json:
+        # Load data form tasks.json
+        tasks = json.load(tasks_json)
+        
+        # Loop thorught tasks
+        for task in tasks['tasks']:
+            if status == None:
+                print(task)
+            # Filter lisiting based on task status
+            elif status == task.get('status'):
+                print(task)
+
+
+def add(description, file):
+    '''Add new task'''
+    id = 1
+
+    with open(file, 'r+') as tasks_json:
+        # Load data from tasks.json
+        tasks = json.load(tasks_json)
+
+        # Check if tasks.json has any tasks
+        if tasks['tasks']:
+            # Increment the id by the last id
+            id += tasks['tasks'][-1]['id']
+
+        # Append the new task to the old_tasks
+        tasks['tasks'].append({
+            'id': id,
+            'description': description,
+            'status': 'todo',
+            'createdAt': time.asctime(),
+            'updatedAt': time.asctime()
+        })
+
+        # Go to the top of the tasks.json
+        tasks_json.seek(0)
+
+        # Overwrite the tasks.json with new data
+        json.dump(tasks, tasks_json, indent=4)
+
+        print('Task added successfully (ID: {})'.format(id))
+
+
+def update(id, description, file):
+    '''Update task'''
+    if id_checker.is_in_range(id, file):
+        with open(file, 'r+') as tasks_json:
+            # Load data from tasks.json
+            tasks = json.load(tasks_json)
+
+            # Update the task description and time stamp
+            tasks['tasks'][id - 1]['description'] = description
+            tasks['tasks'][id - 1]['updatedAt'] = time.asctime()
+
+            # Go to the top of the tasks.json
+            tasks_json.seek(0)
+
+            # Overwrite the tasks.json with updated data
+            json.dump(tasks, tasks_json, indent=4)
+            
+            # Remove trailing data
+            tasks_json.truncate()
+
+            print('Task (ID: {}) successfully updated'.format(id))
+
+
+def mark(id, status, file):
+    '''Mark task as in progress or done'''
+    if id_checker.is_in_range(id, file):
+        with open(file, 'r+') as tasks_json:
+            # Load data from tasks.json
+            tasks = json.load(tasks_json)
+
+            # Update the task status and time stamp
+            tasks['tasks'][id - 1]['status'] = status
+            tasks['tasks'][id - 1]['updatedAt'] = time.asctime()
+
+            # Go to the top of the tasks.json
+            tasks_json.seek(0)
+
+            # Overwrite the tasks.json with updated data
+            json.dump(tasks, tasks_json, indent=4)
+
+            # Remove trailing data
+            tasks_json.truncate()
+
+            print('Task (ID: {}) marked as {}'.format(id, status))
+
+
+def delete(id, file):
+    '''Delete task'''
+    if id_checker.is_in_range(id, file):        
+        with open(file, 'r+') as tasks_json:
+            # Load data from tasks.json
+            tasks = json.load(tasks_json)
+
+            # Delete task
+            del tasks['tasks'][id - 1]
+
+            # Decrement ID's
+            for task in tasks['tasks'][id - 1:]:
+                task['id'] -= 1
+
+            # Go to the top of the tasks.json
+            tasks_json.seek(0)
+
+            # Overwrite the tasks.json
+            json.dump(tasks, tasks_json, indent=4)
+
+            # Remove trailing data
+            tasks_json.truncate()
+
+            print('Successfully deleted task (ID: {})'.format(id))
