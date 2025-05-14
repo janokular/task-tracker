@@ -1,8 +1,8 @@
 #!/bin/env python3
 
-import parser
+import services.parser as parser
 import services.file_checker as file_checker
-import logic_handler
+import services.logic_handler as logic_handler
 
 
 def main():
