@@ -20,16 +20,16 @@ def main():
         task.add(args.task_description, FILE)
 
     elif args.action == 'update':
-        task.update(args.task_id, args.task_description, FILE)
+        task.update(args.task_id, args.action, args.task_description, FILE)
+
+    elif args.action == 'mark-in-progress':
+        task.update(args.task_id, args.action, 'in-progress', FILE)
+
+    elif args.action == 'mark-done':
+        task.update(args.task_id, args.action, 'done', FILE)
 
     elif args.action == 'delete':
         task.delete(args.task_id, FILE)
-
-    elif args.action == 'mark-in-progress':
-        task.mark(args.task_id, 'in-progress', FILE)
-
-    elif args.action == 'mark-done':
-        task.mark(args.task_id, 'done', FILE)
 
     elif args.action == 'list':
         task.list(args.task_status, FILE)
