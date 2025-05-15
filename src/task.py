@@ -1,4 +1,5 @@
 import utils.id_checker as id_checker
+import utils.pretty_print as pretty_print
 import json
 import time
 
@@ -95,7 +96,9 @@ def list(status, file):
         # Loop thorught tasks
         for task in tasks['tasks']:
             if status == None:
-                print(task)
+                pretty_print.add_row(task)
             # Filter lisiting based on task status
             elif status == task.get('status'):
-                print(task)
+                pretty_print.add_row(task)
+
+        pretty_print.display_table()
