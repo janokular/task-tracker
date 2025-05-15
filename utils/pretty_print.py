@@ -16,11 +16,11 @@ def add_row(task):
 
 
 def display_table():
-    max_id_len = maxes['id_len']
-    max_desc_len = maxes['desc_len']
-    max_status_len = maxes['status_len']
-
     if rows:
+        max_id_len = maxes['id_len']
+        max_desc_len = maxes['desc_len']
+        max_status_len = maxes['status_len']
+        
         print('·-' + '-' * max_id_len + '-' 
             + '·-' + '-' * max_desc_len + '-' 
             + '·-' + '-' * max_status_len 
