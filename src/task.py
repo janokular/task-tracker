@@ -96,9 +96,9 @@ def list(status, file):
         # Loop thorught tasks
         for task in tasks['tasks']:
             if status == None:
-                pretty_print.add_row(task)
+                pretty_print.add_table_data(task)
             # Filter lisiting based on task status
             elif status == task.get('status'):
-                pretty_print.add_row(task)
+                pretty_print.add_table_data(task)
 
         pretty_print.display_table()
