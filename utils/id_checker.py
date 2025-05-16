@@ -6,11 +6,9 @@ def is_in_range(id, file):
     '''Check if task id is in range'''
     ids = []
 
-    # Load data form tasks.json
     with open(file) as tasks:
         tasks = json.load(tasks)
 
-        # Append the task id to ids list
         for task in tasks['tasks']:
             ids.append(task['id'])
 
