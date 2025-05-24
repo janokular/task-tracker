@@ -32,7 +32,7 @@ def add(description, file):
         # Overwrite the tasks.json with new data
         json.dump(tasks, tasks_json, indent=4)
 
-        print('Task added successfully (ID: {})'.format(id))
+        print(f'Task added successfully (ID: {id})')
 
 
 def update(id, action, updated_data, file):
@@ -58,7 +58,7 @@ def update(id, action, updated_data, file):
             # Remove trailing data
             tasks_json.truncate()
 
-            print('Task (ID: {}) successfully updated'.format(id))
+            print(f'Task (ID: {id}) successfully updated')
 
 
 def delete(id, file):
@@ -84,7 +84,7 @@ def delete(id, file):
             # Remove trailing data
             tasks_json.truncate()
 
-            print('Task (ID: {}) deleted sucessfully'.format(id))
+            print(f'Task (ID: {id}) deleted sucessfully')
 
 
 def list(status, file):

@@ -16,10 +16,10 @@ def is_in_range(id, file):
         print('No tasks to delete')
         sys.exit(1)
     elif id < 1:
-        print('(ID: {}) cannot be lower than 1'.format(id))
+        print(f'(ID: {id}) cannot be lower than 1')
         sys.exit(1)
     elif id > ids[-1]:
-        print('(ID: {}) is out of range, max value (ID: {})'.format(id, ids[-1]))
+        print(f'(ID: {id}) is out of range, max value (ID: {ids[-1]})')
         sys.exit(1)
     else:
         return id in ids

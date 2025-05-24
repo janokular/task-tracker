@@ -16,23 +16,21 @@ def main():
     args = parser.parse_arguments()
 
     # Handle passed arguments
-    if args.action == 'add':
-        task.add(args.task_description, FILE)
-
-    elif args.action == 'update':
-        task.update(args.task_id, args.action, args.task_description, FILE)
-
-    elif args.action == 'mark-in-progress':
-        task.update(args.task_id, args.action, 'in-progress', FILE)
-
-    elif args.action == 'mark-done':
-        task.update(args.task_id, args.action, 'done', FILE)
-
-    elif args.action == 'delete':
-        task.delete(args.task_id, FILE)
-
-    elif args.action == 'list':
-        task.list(args.task_status, FILE)
+    match args.action:
+        case 'add':
+            task.add(args.task_description, FILE)
+        case 'update':
+            task.update(args.task_id, args.action, args.task_description, FILE)
+        case 'mark-in-progress':
+            task.update(args.task_id, args.action, 'in-progress', FILE)
+        case 'mark-done':
+            task.update(args.task_id, args.action, 'done', FILE)
+        case 'delete':
+            task.delete(args.task_id, FILE)
+        case 'list':
+            task.list(args.task_status, FILE)
+        case _:
+            print('Something went wrong')
 
 if __name__ == '__main__':
     main()
