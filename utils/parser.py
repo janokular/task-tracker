@@ -26,4 +26,9 @@ def parse_arguments():
     list_parser = subparsers.add_parser('list', help='List tasks')
     list_parser.add_argument('task_status', nargs='?', choices=['done', 'todo', 'in-progress'])
 
-    return parser.parse_args()
+    args = parse_arguments()
+
+    if not bool(args.action):
+        parser.error('No arguments provided')
+
+    return args
