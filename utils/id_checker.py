@@ -13,7 +13,7 @@ def is_in_range(id, file):
             ids.append(task['id'])
 
     if not ids:
-        print('No tasks to delete')
+        raise Exception('No tasks to delete')
         sys.exit(1)
     elif id < 1:
         print(f'(ID: {id}) cannot be lower than 1')
