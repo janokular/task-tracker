@@ -2,7 +2,7 @@ rows = []
 maxes = {'id_len': 0, 'desc_len': 0, 'status_len': 0}
 
 
-def add_table_data(task):
+def add_data(task):
     '''Append task and max length for dynamic column sizes'''
     rows.append(task)
 
@@ -16,7 +16,7 @@ def add_table_data(task):
         maxes['status_len'] = len(task['status'])
 
 
-def display_table():
+def display():
     '''Print table with tasks inside dynamic columns'''
     if rows:
         max_id_len = maxes['id_len']
