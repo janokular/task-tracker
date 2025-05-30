@@ -1,5 +1,4 @@
 import json
-import sys
 
 
 def is_in_range(id, file):
@@ -14,12 +13,9 @@ def is_in_range(id, file):
 
     if not ids:
         raise Exception('No tasks to delete')
-        sys.exit(1)
     elif id < 1:
-        print(f'(ID: {id}) cannot be lower than 1')
-        sys.exit(1)
+        raise Exception(f'(ID: {id}) cannot be lower than 1')
     elif id > ids[-1]:
-        print(f'(ID: {id}) is out of range, max value (ID: {ids[-1]})')
-        sys.exit(1)
+        raise Exception(f'(ID: {id}) is out of range, max value (ID: {ids[-1]})')
     else:
         return id in ids
