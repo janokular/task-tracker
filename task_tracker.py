@@ -9,13 +9,10 @@ import src.task as task
 def main():
     FILE = 'tasks.json'
 
-    # Create a new file if not existing or empty
     file_checker.create_if_missing(FILE)
 
-    # Parse arguments from a user
     args = parser.parse_arguments()
 
-    # Handle passed arguments
     match args.action:
         case 'add':
             task.add(args.task_description, FILE)
