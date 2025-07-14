@@ -7,7 +7,7 @@ def is_in_range(id, file):
         tasks = json.load(tasks)
 
         for task in tasks['tasks']:
-            if id == task['id']
+            if id == task['id']:
                 return True
 
         print(f'(ID: {id}) is out of range')
