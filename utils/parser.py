@@ -2,7 +2,7 @@ import argparse
 
 
 def parse_arguments():
-    '''Parse arguments needed for program logic'''
+    '''Parse arguments needed for the program's logic'''
     parser = argparse.ArgumentParser(description='Program used to track and manage your tasks')
 
     subparsers = parser.add_subparsers(dest='action')
