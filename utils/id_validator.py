@@ -1,7 +1,7 @@
 import json
 
 
-def is_in_range(id, file):
+def is_id_in_range(id: int, file):
     '''Check if task id is in range'''
     with open(file) as tasks:
         tasks = json.load(tasks)
@@ -10,5 +10,5 @@ def is_in_range(id, file):
             if id == task['id']:
                 return True
 
-        print(f'(ID: {id}) is out of range')
+        print(f'error: (ID: {id}) is out of range')
         return False

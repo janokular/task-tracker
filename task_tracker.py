@@ -1,33 +1,36 @@
 #!/bin/env python3
 
 
-import utils.file_checker as file_checker
-import utils.parser as parser
-import src.task as task
+from utils.file_service import create_file
+from utils.parser import parse_arguments
+from src.add_task import add
+from src.update_task import update
+from src.delete_task import delete
+from src.list_tasks import list
 
 
 def main():
     FILE = 'tasks.json'
 
-    file_checker.create_if_missing(FILE)
+    create_file(FILE)
 
-    args = parser.parse_arguments()
+    args = parse_arguments()
 
     match args.action:
         case 'add':
-            task.add(args.task_description, FILE)
+            add(args.task_description, FILE)
         case 'update':
-            task.update(args.task_id, args.action, args.task_description, FILE)
+            update(args.task_id, args.action, args.task_description, FILE)
         case 'mark-in-progress':
-            task.update(args.task_id, args.action, 'in-progress', FILE)
+            update(args.task_id, args.action, 'in-progress', FILE)
         case 'mark-done':
-            task.update(args.task_id, args.action, 'done', FILE)
+            update(args.task_id, args.action, 'done', FILE)
         case 'delete':
-            task.delete(args.task_id, FILE)
+            delete(args.task_id, FILE)
         case 'list':
-            task.list(args.task_status, FILE)
+            list(args.task_status, FILE)
         case _:
-            print('Something went wrong')
+            print('error: Something went wrong')
 
 if __name__ == '__main__':
     main()

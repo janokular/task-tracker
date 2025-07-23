@@ -2,7 +2,7 @@ rows = []
 maxes = {'id_len': 0, 'desc_len': 0, 'status_len': 0}
 
 
-def add_data(task):
+def add_row(task):
     '''Append task and max length for dynamic column sizes'''
     rows.append(task)
 
