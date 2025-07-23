@@ -8,7 +8,7 @@ def parse_arguments():
     subparsers = parser.add_subparsers(dest='action')
 
     add_parser = subparsers.add_parser('add', help='add a new task')
-    add_parser.add_argument('description')
+    add_parser.add_argument('description', type=str)
 
     delete_parser = subparsers.add_parser('delete', help='delete a task')
     delete_parser.add_argument('id', type=int)
@@ -24,7 +24,7 @@ def parse_arguments():
 
     update_parser = subparsers.add_parser('update', help='update a task')
     update_parser.add_argument('id', type=int)
-    update_parser.add_argument('description')
+    update_parser.add_argument('description', type=str)
 
     args = parser.parse_args()
 
