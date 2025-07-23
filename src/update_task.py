@@ -9,11 +9,13 @@ def update(id: int, action, updated_data: str, file):
         with open(file, 'r+') as tasks_json:
             tasks = json.load(tasks_json)
 
-            if action == 'update':
-                tasks['tasks'][id - 1]['description'] = updated_data
-            else:
-                tasks['tasks'][id - 1]['status'] = updated_data
-            tasks['tasks'][id - 1]['updatedAt'] = time.asctime()
+            for task in tasks['tasks']:
+                if task['id'] == id:
+                    if action == 'update':
+                        task['description'] = updated_data
+                    else:
+                        task['status'] = updated_data
+                task['updatedAt'] = time.asctime()
 
             tasks_json.seek(0)
 

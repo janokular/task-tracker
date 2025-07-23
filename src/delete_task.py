@@ -8,7 +8,9 @@ def delete(id: int, file):
         with open(file, 'r+') as tasks_json:
             tasks = json.load(tasks_json)
 
-            del tasks['tasks'][id - 1]
+            for task in tasks['tasks']:
+                if task['id'] == id:
+                    tasks['tasks'].remove(task)
 
             # Adjust ID's
             for task in tasks['tasks'][id - 1:]:
