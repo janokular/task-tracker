@@ -1,43 +1,35 @@
-rows = []
-maxes = {'id_len': 0, 'desc_len': 0, 'status_len': 0}
+def print_table(tasks: dict):
+    '''Print tasks inside a table'''
+    id_col_len = 0
+    desc_col_len = 0
+    status_col_len = 0
 
+    for task in tasks:
+        if id_col_len < len(str(task['id'])):
+            id_col_len = len(str(task['id']))
 
-def add_row(task):
-    '''Append task and max length for dynamic column sizes'''
-    rows.append(task)
+        if desc_col_len < len(task['description']):
+            desc_col_len = len(task['description'])
 
-    if maxes['id_len'] < len(str(task['id'])):
-        maxes['id_len'] = len(str(task['id']))
+        if status_col_len < len(task['status']):
+            status_col_len = len(task['status'])
 
-    if maxes['desc_len'] < len(task['description']):
-        maxes['desc_len'] = len(task['description'])
+    print('·-' + '-' * id_col_len
+          + '-·-' + '-' * desc_col_len
+          + '-·-' + '-' * status_col_len
+          + '-·--------------------------·--------------------------·')
 
-    if maxes['status_len'] < len(task['status']):
-        maxes['status_len'] = len(task['status'])
+    for task in tasks:
 
+        print('| {} '.format(str(task['id']))
+              + ' ' * (id_col_len - len(str(task['id'])))
+              + '| {} '.format(task['description'])
+              + ' ' * (desc_col_len - len(task['description']))
+              + '| {} '.format(task['status'])
+              + ' ' * (status_col_len - len(task['status']))
+              + '| {} | {} |'.format(task['createdAt'], task['updatedAt']))
 
-def display():
-    '''Print table with tasks inside dynamic columns'''
-    if rows:
-        max_id_len = maxes['id_len']
-        max_desc_len = maxes['desc_len']
-        max_status_len = maxes['status_len']
-
-        print('·-' + '-' * max_id_len + '-' 
-            + '·-' + '-' * max_desc_len + '-' 
-            + '·-' + '-' * max_status_len 
-            + '-·--------------------------·--------------------------·')
-
-        for row in rows:
-            print('| {} '.format(row['id']) 
-                    + ' ' * (max_id_len - len(str(row['id'])))
-                    + '| {} '.format(row['description']) 
-                    + ' ' * (max_desc_len - len(row['description']))
-                    + '| {} '.format(row['status']) 
-                    + ' ' * (max_status_len - len(row['status']))
-                    + '| {} | {} |'.format(row['createdAt'], row['updatedAt']))
-
-        print('·-' + '-' * max_id_len + '-' 
-            + '·-' + '-' * max_desc_len + '-' 
-            + '·-' + '-' * max_status_len 
-            + '-·--------------------------·--------------------------·')
+    print('·-' + '-' * id_col_len
+          + '-·-' + '-' * desc_col_len
+          + '-·-' + '-' * status_col_len 
+          + '-·--------------------------·--------------------------·')
