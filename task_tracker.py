@@ -18,17 +18,17 @@ def main():
 
     match args.action:
         case 'add':
-            add(args.task_description, FILE)
-        case 'update':
-            update(args.task_id, args.action, args.task_description, FILE)
-        case 'mark-in-progress':
-            update(args.task_id, args.action, 'in-progress', FILE)
-        case 'mark-done':
-            update(args.task_id, args.action, 'done', FILE)
+            add(args.description, FILE)
         case 'delete':
-            delete(args.task_id, FILE)
+            delete(args.id, FILE)
         case 'list':
-            list(args.task_status, FILE)
+            list(args.status, FILE)
+        case 'mark-done':
+            update(args.id, args.action, 'done', FILE)
+        case 'mark-in-progress':
+            update(args.id, args.action, 'in-progress', FILE)
+        case 'update':
+            update(args.id, args.action, args.description, FILE)
         case _:
             print('error: Something went wrong')
 

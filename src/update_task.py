@@ -3,8 +3,8 @@ import time
 from utils.id_validator import is_id_in_range
 
 
-def update(id, action, updated_data, file):
-    '''Update task'''
+def update(id: int, action, updated_data, file):
+    '''Update task's description or status'''
     if is_id_in_range(id, file):
         with open(file, 'r+') as tasks_json:
             # Load data from tasks.json

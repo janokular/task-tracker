@@ -2,8 +2,8 @@ import json
 from utils.table_print import add_row, display
 
 
-def list(status, file):
-    '''List tasks'''
+def list(status: str, file):
+    '''List all tasks or list them by status'''
     with open(file) as tasks_json:
         # Load data form tasks.json
         tasks = json.load(tasks_json)

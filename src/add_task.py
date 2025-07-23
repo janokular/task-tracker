@@ -2,7 +2,7 @@ import json
 import time
 
 
-def add(description, file):
+def add(description: str, file):
     '''Add new task'''
     id = 1
 

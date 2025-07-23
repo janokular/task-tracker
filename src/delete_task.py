@@ -2,7 +2,7 @@ import json
 from utils.id_validator import is_id_in_range
 
 
-def delete(id, file):
+def delete(id: int, file):
     '''Delete task'''
     if is_id_in_range(id, file):
         with open(file, 'r+') as tasks_json:
