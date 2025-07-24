@@ -14,10 +14,10 @@ def print_table(tasks: dict):
         if status_col_len < len(task['status']):
             status_col_len = len(task['status'])
 
-    print('·-' + '-' * id_col_len
-          + '-·-' + '-' * desc_col_len
-          + '-·-' + '-' * status_col_len
-          + '-·--------------------------·--------------------------·')
+    print('+-' + '-' * id_col_len
+          + '---' + '-' * desc_col_len
+          + '---' + '-' * status_col_len
+          + '-------------------------------------------------------+')
 
     for task in tasks:
 
@@ -29,7 +29,7 @@ def print_table(tasks: dict):
               + ' ' * (status_col_len - len(task['status']))
               + '| {} | {} |'.format(task['createdAt'], task['updatedAt']))
 
-    print('·-' + '-' * id_col_len
-          + '-·-' + '-' * desc_col_len
-          + '-·-' + '-' * status_col_len 
-          + '-·--------------------------·--------------------------·')
+    print('+-' + '-' * id_col_len
+          + '---' + '-' * desc_col_len
+          + '---' + '-' * status_col_len 
+          + '--------------------------------------------------------')
