@@ -1,7 +1,11 @@
 import json
 
 
-def is_id_in_range(id: int, file):
+RED = '\033[31m'
+RESET = '\033[0m'
+
+
+def id_validator(id: int, file):
     '''Check if task id is in range'''
     with open(file) as tasks:
         tasks = json.load(tasks)
@@ -10,5 +14,5 @@ def is_id_in_range(id: int, file):
             if id == task['id']:
                 return True
 
-        print(f'error: (ID: {id}) is out of range')
+        print(f'{RED}error: (ID: {id}) is out of range{RESET}')
         return False
