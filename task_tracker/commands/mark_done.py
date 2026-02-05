@@ -24,7 +24,7 @@ def mark_done(id: int):
             
             tasks_json.truncate()
 
-        print(f'Task (ID: {id}) successfully updated')
+        print(f'Task (ID: {id}) marked as done')
 
 
 def run(args):
