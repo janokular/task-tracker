@@ -8,6 +8,8 @@ from ..core.time_service import get_time
 def mark_in_progress(id: int):
     '''Mark task as in-progress'''
     FILE = get_file()
+    
+    STATUS_MSG = 'in-progress'
 
     if id_validator(id, FILE):
         with open(FILE, 'r+') as tasks_json:
@@ -15,7 +17,7 @@ def mark_in_progress(id: int):
 
             for task in tasks['tasks']:
                 if task['id'] == id:
-                    task['status'] = 'in-progress'
+                    task['status'] = STATUS_MSG
                     task['updatedAt'] = get_time()
 
             tasks_json.seek(0)
@@ -24,7 +26,7 @@ def mark_in_progress(id: int):
             
             tasks_json.truncate()
 
-        print(f'Task (ID: {id}) successfully updated')
+        print(f'Task (ID: {id}) marked as {STATUS_MSG}')
 
 
 def run(args):
