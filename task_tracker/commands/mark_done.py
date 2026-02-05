@@ -8,6 +8,7 @@ from ..core.time_service import get_time
 def mark_done(id: int):
     '''Mark task as done'''
     FILE = get_file()
+    STATUS_MSG = 'done'
 
     if id_validator(id, FILE):
         with open(FILE, 'r+') as tasks_json:
@@ -15,7 +16,7 @@ def mark_done(id: int):
 
             for task in tasks['tasks']:
                 if task['id'] == id:
-                    task['status'] = 'done'
+                    task['status'] = STATUS_MSG
                     task['updatedAt'] = get_time()
 
             tasks_json.seek(0)
@@ -24,7 +25,7 @@ def mark_done(id: int):
             
             tasks_json.truncate()
 
-        print(f'Task (ID: {id}) marked as done')
+        print(f'Task (ID: {id}) marked as {STATUS_MSG}')
 
 
 def run(args):
