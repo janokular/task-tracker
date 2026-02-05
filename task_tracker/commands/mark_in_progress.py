@@ -8,7 +8,6 @@ from ..core.time_service import get_time
 def mark_in_progress(id: int):
     '''Mark task as in-progress'''
     FILE = get_file()
-    
     STATUS_MSG = 'in-progress'
 
     if id_validator(id, FILE):
