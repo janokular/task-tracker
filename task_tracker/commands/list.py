@@ -1,6 +1,6 @@
 import json
 
-from ..core.print_service import table_print
+from ..core.print_service import table
 from ..core.file_service import get_file
 
 
@@ -18,7 +18,7 @@ def list(status: str):
                 tasks_for_listing.append(task)
     
     if tasks_for_listing:
-        table_print(tasks_for_listing)
+        table(tasks_for_listing)
 
 
 def run(args):
