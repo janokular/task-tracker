@@ -36,17 +36,17 @@ def cal_cell_spacing(spacing: dict, tasks: dict) -> dict[str, int]:
     created_spacing = spacing['createdAt']
     updated_spacing = spacing['updatedAt']
     
-    for t in tasks:
-        if id_spacing < len(str(t['id'])):
-            id_spacing = len(str(t['id']))
-        if task_spacing < len(t['description']):
-            task_spacing = len(t['description'])
-        if status_spacing < len(t['status']):
-            status_spacing = len(t['status'])
-        if created_spacing < len(t['createdAt']):
-            created_spacing = len(t['createdAt'])
-        if updated_spacing < len(t['updatedAt']):
-            updated_spacing = len(t['updatedAt'])
+    for task in tasks:
+        if id_spacing < len(str(task['id'])):
+            id_spacing = len(str(task['id']))
+        if task_spacing < len(task['description']):
+            task_spacing = len(task['description'])
+        if status_spacing < len(task['status']):
+            status_spacing = len(task['status'])
+        if created_spacing < len(task['createdAt']):
+            created_spacing = len(task['createdAt'])
+        if updated_spacing < len(task['updatedAt']):
+            updated_spacing = len(task['updatedAt'])
 
     return {
         'id': id_spacing,
@@ -100,18 +100,18 @@ def construct_header(cell_spacing: dict, label_spacing: dict) -> str:
 def construct_rows(tasks: dict, cell_spacing: dict) -> list[str]:
     '''Construct table rows'''
     rows = []
-    for t in tasks:
+    for task in tasks:
         rows.append(
             '| '
-            f"{str(t['id'])}{' ' * (cell_spacing['id'] - len(str(t['id'])))}"
+            f"{str(task['id'])}{' ' * (cell_spacing['id'] - len(str(task['id'])))}"
             ' | '
-            f"{t['description']}{' ' * (cell_spacing['task'] - len(t['description']))}"
+            f"{task['description']}{' ' * (cell_spacing['task'] - len(task['description']))}"
             ' | '
-            f"{t['status']}{' ' * (cell_spacing['status'] - len(t['status']))}"
+            f"{task['status']}{' ' * (cell_spacing['status'] - len(task['status']))}"
             ' | '
-            f"{t['createdAt']}{' ' * (cell_spacing['createdAt'] - len(t['createdAt']))}"
+            f"{task['createdAt']}{' ' * (cell_spacing['createdAt'] - len(task['createdAt']))}"
             ' | '
-            f"{t['updatedAt']}{' ' * (cell_spacing['updatedAt'] - len(t['updatedAt']))}"
+            f"{task['updatedAt']}{' ' * (cell_spacing['updatedAt'] - len(task['updatedAt']))}"
             ' |'
         )
     return rows

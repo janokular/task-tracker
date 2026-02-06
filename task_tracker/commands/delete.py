@@ -1,30 +1,29 @@
 import json
 
 from ..core.id_validator import id_validator
-from ..core.file_service import get_file
+from ..core.file_service import get_filepath
 
 
 def delete(id: int):
     '''Delete a task'''
-    FILE = get_file()
+    filepath = get_filepath()
 
-    if id_validator(id, FILE):
-        with open(FILE, 'r+') as tasks_json:
-            tasks = json.load(tasks_json)
+    if id_validator(id, filepath):
+        with open(filepath, 'r+') as file:
+            tasks = json.load(file)
 
-            for task in tasks['tasks']:
+            for task in tasks:
                 if task['id'] == id:
-                    tasks['tasks'].remove(task)
+                    tasks.remove(task)
 
-            # Adjust ID's
-            for task in tasks['tasks'][id - 1:]:
+            for task in tasks[id - 1:]:
                 task['id'] -= 1
 
-            tasks_json.seek(0)
+            file.seek(0)
 
-            json.dump(tasks, tasks_json, indent=4)
+            json.dump(tasks, file, indent=4)
 
-            tasks_json.truncate()
+            file.truncate()
 
         print(f'Task (ID: {id}) deleted successfully')
 

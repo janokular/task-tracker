@@ -1,23 +1,21 @@
 import json
 
-from ..core.file_service import get_file
+from ..core.file_service import get_filepath
 from ..core.time_service import get_time
 
 
 def add(description: str):
     '''Add a new task'''
-    FILE = get_file()
-
+    filepath = get_filepath()
     new_id = 1
 
-    with open(FILE, 'r+') as tasks_json:
-        tasks = json.load(tasks_json)
+    with open(filepath, 'r+') as file:
+        tasks = json.load(file)
 
-        # Calculate ID for a new task
-        if tasks['tasks']:
-            new_id += tasks['tasks'][-1]['id']
+        if tasks:
+            new_id += tasks[-1]['id']
 
-        tasks['tasks'].append(
+        tasks.append(
             {
                 'id': new_id,
                 'description': description,
@@ -27,9 +25,9 @@ def add(description: str):
             }
         )
 
-        tasks_json.seek(0)
+        file.seek(0)
 
-        json.dump(tasks, tasks_json, indent=4)
+        json.dump(tasks, file, indent=4)
 
     print(f'Task added successfully (ID: {new_id})')
 

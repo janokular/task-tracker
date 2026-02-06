@@ -2,12 +2,20 @@ import os
 import json
 
 
-def get_file():
-    '''Create JSON file if file is missing or if it is empty'''
-    FILE = 'tasks.json'
+FILEPATH = 'tasks.json'
 
-    if not os.path.exists(FILE) or os.path.getsize(FILE) == 0:
-        with open(FILE, 'w') as tasks:
-            json.dump({"tasks": []}, tasks)
-    
-    return FILE
+
+def get_filepath() -> str:
+    '''Get tasks.json filepath'''
+    filepath_validator(FILEPATH)
+    return FILEPATH
+
+
+def filepath_validator(filepath: str):
+    '''Create JSON file if filepath does not exist or file is empty'''
+    if (
+        not os.path.exists(filepath)
+        or os.path.getsize(filepath) == 0
+    ):
+        with open(filepath, 'w') as file:
+            json.dump([], file)
