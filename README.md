@@ -1,4 +1,4 @@
-## Task tracker
+## Task Tracker
 ```
 # Initial setup
 # Create and activate the virtual environment
