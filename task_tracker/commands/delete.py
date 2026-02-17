@@ -16,9 +16,6 @@ def delete(id: int):
                 if task['id'] == id:
                     tasks.remove(task)
 
-            for task in tasks[id - 1:]:
-                task['id'] -= 1
-
             file.seek(0)
 
             json.dump(tasks, file, indent=4)
