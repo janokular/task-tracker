@@ -14,5 +14,5 @@ def id_validator(id: int, filepath: str) -> bool:
             if id == task['id']:
                 return True
 
-        print(f'{RED}error: No Task (ID: {id}) inside {filepath}{RESET}')
+        print(f'{RED}error: No task with (ID: {id}) inside {filepath}{RESET}')
         return False
